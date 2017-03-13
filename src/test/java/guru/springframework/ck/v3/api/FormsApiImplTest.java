@@ -1,12 +1,9 @@
 package guru.springframework.ck.v3.api;
 
-import guru.springframework.ck.v3.model.Form;
 import guru.springframework.ck.v3.model.Forms;
 import guru.springframework.ck.v3.model.SubscriptionEntity;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -15,23 +12,15 @@ public class FormsApiImplTest {
 
     private FormsAPI formsAPI;
 
-    private String apiKey;
-
-    private String apiSecret;
-
     @Before
     public void setup() {
-
         formsAPI = new FormsApiImpl(System.getenv("API_KEY"), System.getenv("API_SECRET"));
     }
 
     @Test
     public void testListForms() throws Exception {
-        //given
-        Forms forms = formsAPI.listForms();
-
         //when
-        List<Form> formList = forms.getForms();
+        Forms forms = formsAPI.listForms();
 
         //then
         assertNotNull(forms);
@@ -103,7 +92,6 @@ public class FormsApiImplTest {
         //given
         SubscriptionEntity subscriptionEntity =
           formsAPI.tagSubscriber("21012", "farid.iflex@gmail.com");
-        Integer subscriberId = subscriptionEntity.getSubscription().getSubscriber().getId();
         assertNotNull(subscriptionEntity.getSubscription().getId());
         assertNotNull(subscriptionEntity.getSubscription().getSubscriber().getId());
 
